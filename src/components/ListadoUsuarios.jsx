@@ -1,11 +1,11 @@
 import Filas from "./Filas"
 import Spinner from "./Spinner"
 
-const ListadoUsuarios = ({ productos }) => {
+const ListadoUsuarios = ({ usuarios, borrarUsuario, setUsuarioAEditar }) => {
     
     return (
         <>
-            { productos ? (
+            { usuarios ? (
                 <table className="mt-5 w-full text-sm text-center text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-200">
                         <tr>
@@ -17,9 +17,9 @@ const ListadoUsuarios = ({ productos }) => {
                     </thead>
                     <tbody>
                     {
-                        productos.map((productos) => (
+                        usuarios.map((usuarios) => (
                         <Filas
-                            productos={productos}
+                            usuarios={usuarios}
                         />
                         ))
                     }

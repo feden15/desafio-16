@@ -5,13 +5,14 @@ import ListadoUsuarios from './components/ListadoUsuarios'
 
 function App() {
 
-  const [productos, setProductos] = useState(null)
+  const [usuarios, setUsuarios] = useState(null)
+  const [usuarioAEditar, setUsuarioAEditar] = useState(null)
 
   useEffect(() => {
-    getAllProductos()
+    getAllUsuarios()
   }, [])
 
-  const getAllProductos = async () => {
+  const getAllUsuarios = async () => {
     
     try {
       const res = await fetch(import.meta.env.VITE_BACKEND)
@@ -21,21 +22,109 @@ function App() {
       }
 
       const data = await res.json()
-      setProductos(data)
+      setUsuarios(data)
 
     } catch (error) {
       console.error(error.message)
     }
 
   }
-   
+
+  const agregarUsuario = async (nuevoUsuario) => {
+    
+    nuevoUsuario.edad = Number(nuevoUsuario.edad)
+    delete nuevoUsuario.id
+
+    try {
+      const res = await fetch(import.meta.VITE_BACKEND,{
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(nuevoUsuario)
+      })
+
+      if (!res.ok) {
+        throw new Error('No se puede hacer la petición')
+      }
+
+      const usuarioAgregadoABackend = await res.json()
+
+      const nuevoEstadoUsuarios = [...usuarios, usuarioAgregadoABackend]
+      setUsuarios(nuevoEstadoUsuarios)
+      
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const editarUsuario = async (usuarioEditado) => {
+
+    const urlUserEditar = import.meta.env.VITE_BACKEND + usuarioEditado.id
+
+    try {
+      
+      usuarioEditado.edad = Number(usuarioEditado.edad)
+
+      const res = await fetch(urlUserEditar, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(usuarioEditado)
+      })
+
+      if (!res.ok) {
+        throw new Error('No se pudo hacer la petición')
+      }
+
+      const usuarioEditadoAlBackend = await res.json()
+
+      const nuevoEstadoUsuarios = usuarios.map(user => user.id === usuarioEditado.id ? usuarioEditado : user)
+      setUsuarios(nuevo)
+
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
+
+  const borrarUsuario = async (id) => {
+
+    const urlUserBorrar = import.meta.env.VITE_BACKEND + id
+
+    try {
+      
+      const res = await fetch(urlUserBorrar, {
+        method: 'DELETE'
+      })
+      
+      if (!res.ok) {
+        throw new Error ('No se pudo realizar la petición')
+      }
+
+      const usuarioEliminadoDelBackend = await res.json()
+
+    } catch (error) {
+      console.error(error)
+    }
+
+    const nuevoEstadoUsuarios = usuarios.filter(user => user.id !== id)
+    setUsuarios(nuevoEstadoUsuarios)
+
+  }
 
   return (
     <>
       <h1 className="text-center font-bold text-4xl my-5">Usuarios</h1>
       <hr />
-      <Formulario/>
-      <ListadoUsuarios productos={productos}/>
+      <Formulario
+        agregarUsuario={agregarUsuario}
+        editarUsuario={editarUsuario}
+        borrarUsuario={borrarUsuario}
+        setUsuarioAEditar={setUsuarioAEditar}
+      />
+      <ListadoUsuarios
+        usuarios={usuarios}
+        borrarUsuario={borrarUsuario}
+        setUsuarioAEditar={setUsuarioAEditar}
+      />
     </>
   )
 }

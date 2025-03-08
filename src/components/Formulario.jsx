@@ -1,5 +1,26 @@
+import { useState } from "react"
 
-const Formulario = () => {
+const Formulario = ({ agregarUsuario, editarUsuario, borrarUsuario, setUsuarioAEditar }) => {
+
+    const dataFormularioInicial = {
+        id: null,
+        nombre: '',
+        apellido: '',
+        edad: '',
+        puesto: ''
+    }
+
+    const [dataFormulario, setDataFormulario] = useState(dataFormularioInicial)
+
+    const handleChange = (e) => {
+
+        const dataActualizada = {
+          ...dataFormulario,
+          [e.target.name]: e.target.value
+        }
+    
+        setDataFormulario(dataActualizada)
+    }
     
     return (
         <>
@@ -20,6 +41,7 @@ const Formulario = () => {
                         placeholder="Ingresa el nombre"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="nombre"
+                        onChange={handleChange}
                         />
 
                     {/* Campo Apellido */}
@@ -32,6 +54,7 @@ const Formulario = () => {
                         placeholder="Ingresa el apellido"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="apellido"
+                        onChange={handleChange}
                         />
 
                     {/* Campo Edad */}
@@ -44,6 +67,7 @@ const Formulario = () => {
                         placeholder="Ingresa la edad"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="edad"
+                        onChange={handleChange}
                         />
 
                     {/* Campo Puesto */}
@@ -56,6 +80,7 @@ const Formulario = () => {
                         placeholder="Ingresa el puesto de trabajo"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="puesto"
+                        onChange={handleChange}
                     />
 
 

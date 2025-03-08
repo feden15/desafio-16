@@ -1,12 +1,12 @@
 
-const Filas = ({ productos }) => {
+const Filas = ({ usuarios }) => {
 
     return (
         <tr className="bg-white border-b border-gray-200">
-            <th className="px-6 py-4">{productos.nombre}</th>
-            <td className="px-6 py-4">{productos.apellido}</td>
-            <td className="px-6 py-4">{productos.edad}</td>
-            <td className="px-6 py-4">{productos.puesto}</td>
+            <th className="px-6 py-4">{usuarios.nombre}</th>
+            <td className="px-6 py-4">{usuarios.apellido}</td>
+            <td className="px-6 py-4">{usuarios.edad}</td>
+            <td className="px-6 py-4">{usuarios.puesto}</td>
         </tr>
     )
     
