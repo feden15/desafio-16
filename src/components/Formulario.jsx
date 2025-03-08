@@ -62,13 +62,13 @@ const Formulario = () => {
                     <div className="flex justify-between">
                         <button
                             type="submit"
-                            className="px-4 py-2 cursor-pointer text-white rounded-lg bg-green-500 hover:bg-green-700"
+                            className="px-4 py-2 cursor-pointer text-white rounded-lg bg-blue-500 hover:bg-blue-700"
                         >
                             Cargar/Editar
                         </button>
                         <button
                             type="reset"
-                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 cursor-pointer"
+                            className="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-700 cursor-pointer"
                         >
                             Resetear
                         </button>
