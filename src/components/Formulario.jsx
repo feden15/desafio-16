@@ -12,6 +12,8 @@ const Formulario = ({ agregarUsuario, editarUsuario, borrarUsuario, setUsuarioAE
 
     const [dataFormulario, setDataFormulario] = useState(dataFormularioInicial)
 
+    
+
     const handleChange = (e) => {
 
         const dataActualizada = {

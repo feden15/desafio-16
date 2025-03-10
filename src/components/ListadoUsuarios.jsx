@@ -20,6 +20,9 @@ const ListadoUsuarios = ({ usuarios, borrarUsuario, setUsuarioAEditar }) => {
                         usuarios.map((usuarios) => (
                         <Filas
                             usuarios={usuarios}
+                            key={usuarios.id}
+                            borrarUsuario={borrarUsuario}
+                            setUsuarioAEditar={setUsuarioAEditar}
                         />
                         ))
                     }
