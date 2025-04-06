@@ -7,7 +7,6 @@ const Inicio = () => {
     return (
     <>
         <Formulario/>
-        <hr />
         <Tabla/>
     </>
     )
