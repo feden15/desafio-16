@@ -1,10 +1,35 @@
+import { useEffect, useState } from "react"
 
-const Formulario = () => {
+const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarUsuario }) => {
+
+    const formInicial = {
+        id: null,
+        nombre: '',
+        apellido: '',
+        edad: '',
+        puesto: ''
+    }
+
+    const [dataFormulario, setDataFormulario] = useState(formInicial)
+
+    useEffect(() => {
+        usuarioAEditar ? setDataFormulario(usuarioAEditar) : setDataFormulario(formInicial)
+    }, [usuarioAEditar])
+
+    const handleChange = (e) => {
+
+        const dataActualizada = {
+            ...dataFormulario,
+            [e.target.name]: e.target.value
+        }
+
+        setDataFormulario(dataActualizada)
+    }
 
     return (
         <>
             <h2 className="text-2xl font-thin my-4 text-center">
-                Formulario de carga de usuarios
+                {!usuarioAEditar ? 'Formulario de carga de usuarios' : 'Formulario de edición de usuarios'}
             </h2>
 
             <div>
@@ -20,6 +45,7 @@ const Formulario = () => {
                         placeholder="Ingresa el nombre"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="nombre"
+                        onChange={handleChange}
                     />
 
                     {/* Campo Apellido */}
@@ -32,6 +58,7 @@ const Formulario = () => {
                         placeholder="Ingresa el apellido"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="apellido"
+                        onChange={handleChange}
                     />
 
                     {/* Campo Edad */}
@@ -44,6 +71,7 @@ const Formulario = () => {
                         placeholder="Ingresa la edad"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="edad"
+                        onChange={handleChange}
                     />
 
                     {/* Campo Puesto */}
@@ -56,14 +84,15 @@ const Formulario = () => {
                         placeholder="Ingresa el puesto de trabajo"
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="puesto"
+                        onChange={handleChange}
                     />
 
                     <div className="flex justify-between">
                         <button
                             type="submit"
-                            className="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-700 cursor-pointer"
+                            className={`px-4 py-2 ${usuarioAEditar ? 'bg-yellow-500' : 'bg-green-500'} text-white rounded-lg ${usuarioAEditar ? 'hover:bg-yellow-700' : 'hover:bg-green-700'}  cursor-pointer`}
                         >
-                            Editar/Crear
+                            {usuarioAEditar ? 'Editar' : 'Crear'}
                         </button>
                         <button
                             type="reset"
