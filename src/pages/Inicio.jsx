@@ -111,8 +111,19 @@ const Inicio = () => {
 
     return (
         <>
-            <Formulario />
-            <TablaUsuarios />
+            <h1 className="text-center text-blue-500 font-bold text-4xl my-5">Usuarios</h1>
+            <hr />
+            <Formulario
+                agregarUsuario={agregarUsuario}
+                usuarioAEditar={usuarioAEditar}
+                setUsuarioAEditar={setUsuarioAEditar}
+                editarUsuario={editarUsuario}
+            />
+            <TablaUsuarios
+                usuarios={usuarios}
+                borrarUsuario={borrarUsuario}
+                setUsuarioAEditar={setUsuarioAEditar}
+            />
         </>
     )
 }
