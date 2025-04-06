@@ -1,5 +1,5 @@
 
-const Filas = () => {
+const Filas = ({ usuarios, borrarUsuario, setUsuarioAEditar, verUsuario }) => {
 
     return (
         <tr>
