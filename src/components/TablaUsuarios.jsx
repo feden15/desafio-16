@@ -1,6 +1,7 @@
 import Filas from './Filas'
 
 const TablaUsuarios = () => {
+
     return (
         <>
             <table className="mt-5 w-full text-sm text-center text-gray-500">
