@@ -1,6 +1,6 @@
 import Filas from './Filas'
 
-const Tabla = () => {
+const TablaUsuarios = () => {
     return (
         <>
             <table className="mt-5 w-full text-sm text-center text-gray-500">
@@ -21,4 +21,4 @@ const Tabla = () => {
     )
 }
 
-export default Tabla
+export default TablaUsuarios
