@@ -26,6 +26,25 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
         setDataFormulario(dataActualizada)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (dataFormulario.id === null) {
+            agregarUsuario(dataFormulario)
+        } else {
+            editarUsuario(dataFormulario)
+        }
+
+        handleReset()
+    }
+
+    const handleReset = () => {
+
+        setDataFormulario(formInicial)
+        setUsuarioAEditar(null)
+
+    }
+
     return (
         <>
             <h2 className="text-2xl font-thin my-4 text-center">
@@ -33,7 +52,7 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
             </h2>
 
             <div>
-                <form className="bg-white border rounded-lg p-6 w-96 m-auto">
+                <form className="bg-white border rounded-lg p-6 w-96 m-auto" onSubmit={handleSubmit}>
 
                     {/* Campo Nombre */}
                     <label htmlFor="lbl-nombre" className="block mb-2 text-sm font-bold text-gray-700">
@@ -97,6 +116,7 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
                         <button
                             type="reset"
                             className="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-700 cursor-pointer"
+                            onClick={handleReset}
                         >
                             Resetear
                         </button>
