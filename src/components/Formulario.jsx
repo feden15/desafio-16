@@ -65,6 +65,7 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="nombre"
                         onChange={handleChange}
+                        value={dataFormulario.nombre}
                     />
 
                     {/* Campo Apellido */}
@@ -78,6 +79,7 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="apellido"
                         onChange={handleChange}
+                        value={dataFormulario.apellido}
                     />
 
                     {/* Campo Edad */}
@@ -91,6 +93,7 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="edad"
                         onChange={handleChange}
+                        value={dataFormulario.edad}
                     />
 
                     {/* Campo Puesto */}
@@ -104,6 +107,7 @@ const Formulario = ({ agregarUsuario, usuarioAEditar, setUsuarioAEditar, editarU
                         className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="puesto"
                         onChange={handleChange}
+                        value={dataFormulario.puesto}
                     />
 
                     <div className="flex justify-between">

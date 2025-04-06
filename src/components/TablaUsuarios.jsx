@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Filas from './Filas'
 import Spinner from './Spinner'
+import ModalDetalleUsuario from './ModalDetalleUsuario'
 
 const TablaUsuarios = ({ usuarios, borrarUsuario, setUsuarioAEditar }) => {
 
@@ -50,7 +51,7 @@ const TablaUsuarios = ({ usuarios, borrarUsuario, setUsuarioAEditar }) => {
                 </div>
             )}
             {mostrarModal && (
-                <ModalUsuario
+                <ModalDetalleUsuario
                     usuarios={usuarioSeleccionado}
                     cerrarModal={cerrarModal}
                 />

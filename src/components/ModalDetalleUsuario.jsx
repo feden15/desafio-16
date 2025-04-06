@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModalUsuario = ({ usuarios, cerrarModal }) => {
+const ModalDetalleUsuario = ({ usuarios, cerrarModal }) => {
 
     if (!usuarios) return null;
 
@@ -26,4 +26,4 @@ const ModalUsuario = ({ usuarios, cerrarModal }) => {
     );
 };
 
-export default ModalUsuario
+export default ModalDetalleUsuario
