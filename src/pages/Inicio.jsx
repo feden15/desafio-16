@@ -55,6 +55,60 @@ const Inicio = () => {
         }
     }
 
+    const editarUsuario = async (usuarioEditado) => {
+
+        const urlUserEditar = import.meta.env.VITE_BACKEND + usuarioEditado.id
+
+        try {
+
+            usuarioEditado.edad = Number(usuarioEditado.edad)
+
+            const res = await fetch(urlUserEditar, {
+                method: 'PUT',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(usuarioEditado)
+            })
+
+            if (!res.ok) {
+                throw new Error('No se pudo hacer la petición')
+            }
+
+            const usuarioEditadoAlBackend = await res.json()
+
+            const nuevoEstadoUsuarios = usuarios.map(user => user.id === usuarioEditado.id ? usuarioEditado : user)
+            setUsuarios(nuevo)
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
+
+    const borrarUsuario = async (id) => {
+
+        const urlUserBorrar = import.meta.env.VITE_BACKEND + id
+
+        try {
+
+            const res = await fetch(urlUserBorrar, {
+                method: 'DELETE'
+            })
+
+            if (!res.ok) {
+                throw new Error('No se pudo realizar la petición')
+            }
+
+            const usuarioEliminadoDelBackend = await res.json()
+
+        } catch (error) {
+            console.error(error)
+        }
+
+        const nuevoEstadoUsuarios = usuarios.filter(user => user.id !== id)
+        setUsuarios(nuevoEstadoUsuarios)
+
+    }
+
     return (
         <>
             <Formulario />
